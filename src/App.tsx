@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react'
 
-function App() {
+// 1. import `ChakraProvider` component
+import { ChakraProvider, useColorModeValue } from '@chakra-ui/react'
+import theme, { colors } from './shared/theme';
+import { MainInterface } from './interface/main';
+
+export default function App() {
+  document.body.style.overflow = "hidden" //no more scrolly wolly
+  document.body.style.height = '100%'
+
+  const backgroundColor = useColorModeValue("gray.10", "blackAlpha.600");
+  const primaryColor = useColorModeValue("orange.300", "orange.200");
+  const secondaryColor = useColorModeValue("teal.300", "teal.300");
+  const superColor = useColorModeValue('blackAlpha.800', 'blackAlpha.800');
+  const weakSuperColor = useColorModeValue('blackAlpha.500', 'blackAlpha.500');
+
+  colors.primary = primaryColor;
+  colors.secondary = secondaryColor;
+  colors.background = backgroundColor;
+  colors.super = superColor;
+  colors.weaksuper = weakSuperColor;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ChakraProvider theme={theme}>
+      <MainInterface/>
+    </ChakraProvider>
+  )
 }
-
-export default App;
